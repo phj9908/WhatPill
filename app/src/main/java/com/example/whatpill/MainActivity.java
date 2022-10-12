@@ -13,6 +13,8 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
+    ImageView iv_camera;
+
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
@@ -20,11 +22,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ImageView iv_camera = findViewById(R.id.iv_camera);
+        iv_camera = (ImageView)findViewById(R.id.iv_camera);
 
         iv_camera.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 dispatchTakePictureIntent();
             }
         });
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     // camera intent 전달
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
         if(takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
