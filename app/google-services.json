@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "928620720367",
+    "project_id": "what-pill",
+    "storage_bucket": "what-pill.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:928620720367:android:1246a56d434da1d2deeb1a",
+        "android_client_info": {
+          "package_name": "com.example.whatpill"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "928620720367-v8tkf1l5fmhut66knsb2k1992km03ijq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCm803ZnPG5ej49X2r_YP9fzWhzC2hNI3w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "928620720367-v8tkf1l5fmhut66knsb2k1992km03ijq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
