@@ -37,10 +37,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     final static int TAKE_PICTURE = 1;
-    final static int GET_GALLERY_IMAGE =2;
     private static final String TAG = "MyActivity";
 
-    Button btnCamera, btnGallery, btnSave;
+    Button btnCamera, btnSave;
     ImageView ivPill;
     Uri imageUri;
 
@@ -50,12 +49,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         btnCamera = findViewById(R.id.btnCamera);
-        btnGallery = findViewById(R.id.btnGallery);
         btnSave = findViewById(R.id.btnSave);
         ivPill = findViewById(R.id.ivPill);
 
         btnCamera.setOnClickListener(this);
-        btnGallery.setOnClickListener(this);
         btnSave.setOnClickListener(this);
 
         // 권한 체크 후 권한 요청
@@ -87,10 +84,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent, TAKE_PICTURE);
                 break;
-            case R.id.btnGallery:
-                intent = new Intent(Intent.ACTION_PICK);
-                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-                break;
             case R.id.btnSave:
                 clickUpload();
                 imageUri = null;
@@ -112,17 +105,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 imageUri = Uri.parse(imageSaveUri);
                 Log.d(TAG, "MainActivity - onActivityResult() called" + imageUri);
             } // 갤러리에서 이미지 가져온 후의 응답
-        } else if(requestCode == GET_GALLERY_IMAGE){
-            if(resultCode == RESULT_OK && data.getData() != null) {
-                imageUri= data.getData();
-                Log.d(TAG, "MainActivity - onActivityResult() called" + imageUri);
-                Log.d(TAG, "MainActivity - onActivityResult() called" + getRealPathFromURI(imageUri));
-
-                Glide.with(this)
-                        .load(getRealPathFromURI(imageUri))
-                        .into(ivPill);
-
-            }
         }
     }
 
@@ -142,11 +124,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // 파이어베이스 업로드 함수
     public void clickUpload() {
 
-        // 1. FirebaseStorage을 관리하는 객체 얻어오기
+        // FirebaseStorage을 관리하는 객체 얻어오기
         FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
 
-        // 2. 업로드할 파일의 node를 참조하는 객체
-        // 파일 명이 중복되지 않도록 날짜를 이용
+        // 업로드할 파일의 node를 참조하는 객체(파일명: 날짜)
         SimpleDateFormat sdf= new SimpleDateFormat("yyyyMMddhhmmss");
         String filename= sdf.format(new Date())+ ".png";
         // 현재 시간으로 파일명 지정 20191023142634

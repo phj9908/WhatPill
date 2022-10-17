@@ -31,14 +31,6 @@
             android:textColor="@color/white" />
 
         <Button
-            android:id="@+id/btnGallery"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/black"
-            android:text="갤러리"
-            android:textColor="@color/white" />
-
-        <Button
             android:id="@+id/btnSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
