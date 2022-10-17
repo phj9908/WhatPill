@@ -56,11 +56,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSave.setOnClickListener(this);
 
         // 권한 체크 후 권한 요청
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if(checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                    ==checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)){}
-            else{
-                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE},1 );
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    == checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
             }
         }
     }
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED && grantResults[2] == PackageManager.PERMISSION_GRANTED){
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED && grantResults[2] == PackageManager.PERMISSION_GRANTED) {
             Log.d("로그", "Permission: " + permissions[0] + " was " + grantResults[0]);
         }
     }
@@ -96,10 +96,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
 
         // 사진 촬영 완료 후 응답
-        if(requestCode == TAKE_PICTURE) {
-            if(resultCode == RESULT_OK && data.hasExtra("data")) {
+        if (requestCode == TAKE_PICTURE) {
+            if (resultCode == RESULT_OK && data.hasExtra("data")) {
                 Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-                if(bitmap != null) ivPill.setImageBitmap(bitmap);
+                if (bitmap != null) ivPill.setImageBitmap(bitmap);
 
                 String imageSaveUri = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "사진 저장", "찍은 사진이 저장되었습니다.");
                 imageUri = Uri.parse(imageSaveUri);
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public String getRealPathFromURI(Uri contentUri) {
 
-        String[] proj = { MediaStore.Images.Media.DATA };
+        String[] proj = {MediaStore.Images.Media.DATA};
 
         Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
         cursor.moveToNext();
@@ -125,21 +125,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void clickUpload() {
 
         // FirebaseStorage을 관리하는 객체 얻어오기
-        FirebaseStorage firebaseStorage= FirebaseStorage.getInstance();
+        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
 
         // 업로드할 파일의 node를 참조하는 객체(파일명: 날짜)
-        SimpleDateFormat sdf= new SimpleDateFormat("yyyyMMddhhmmss");
-        String filename= sdf.format(new Date())+ ".png";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+        String filename = sdf.format(new Date()) + ".png";
         // 현재 시간으로 파일명 지정 20191023142634
         // 원래 확장자는 파일의 실제 확장자를 얻어와서 사용해야함. 그러려면 이미지의 절대 주소를 구해야함.
 
-        StorageReference imgRef= firebaseStorage.getReference("uploads/"+filename);
+        StorageReference imgRef = firebaseStorage.getReference("uploads/" + filename);
         // uploads라는 폴더가 없으면 자동 생성
 
         // 참조 객체를 통해 이미지 파일 업로드
         // imgRef.putFile(imgUri);
         // 업로드 결과를 받고 싶다면 아래와 같이 UploadTask를 사용하면 된다.
-        UploadTask uploadTask =imgRef.putFile(imageUri);
+        UploadTask uploadTask = imgRef.putFile(imageUri);
         uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
