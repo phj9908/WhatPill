@@ -76,17 +76,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Intent intent;
+        Intent intent1;
 
         switch (v.getId()) {
             // 촬영
             case R.id.btnCamera:
-                intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, TAKE_PICTURE);
+                intent1 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent1, TAKE_PICTURE);
                 break;
+            // 저장
             case R.id.btnSave:
                 clickUpload();
                 imageUri = null;
+
                 Intent intent2 = new Intent(this, Information.class);
                 startActivity(intent2);
                 break;
