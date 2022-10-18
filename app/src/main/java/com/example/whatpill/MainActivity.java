@@ -101,15 +101,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Bitmap bitmap = (Bitmap) data.getExtras().get("data");
                 if (bitmap != null) ivPill.setImageBitmap(bitmap);
 
-                String imageSaveUri = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "사진 저장", "찍은 사진이 저장되었습니다.");
+                String imageSaveUri = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "사진 저장", "사진이 저장되었습니다.");
                 imageUri = Uri.parse(imageSaveUri);
                 Log.d(TAG, "MainActivity - onActivityResult() called" + imageUri);
-            } // 갤러리에서 이미지 가져온 후의 응답
+            }
         }
     }
 
     public String getRealPathFromURI(Uri contentUri) {
-
         String[] proj = {MediaStore.Images.Media.DATA};
 
         Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
@@ -124,13 +123,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // 파이어베이스 업로드 함수
     public void clickUpload() {
 
-        // FirebaseStorage을 관리하는 객체 얻어오기
+        // Firebase Storage를 관리하는 객체 얻어오기
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
 
-        // 업로드할 파일의 node를 참조하는 객체(파일명: 날짜)
+        // 업로드할 파일의 node를 참조하는 객체(파일명: 날짜+시간)
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
         String filename = sdf.format(new Date()) + ".png";
-        // 현재 시간으로 파일명 지정 20191023142634
         // 원래 확장자는 파일의 실제 확장자를 얻어와서 사용해야함. 그러려면 이미지의 절대 주소를 구해야함.
 
         StorageReference imgRef = firebaseStorage.getReference("uploads/" + filename);
@@ -153,6 +151,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 });
     }
-
 }
 
