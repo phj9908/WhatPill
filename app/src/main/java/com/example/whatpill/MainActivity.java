@@ -87,6 +87,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnSave:
                 clickUpload();
                 imageUri = null;
+                Intent intent2 = new Intent(this, Information.class);
+                startActivity(intent2);
                 break;
         }
     }
