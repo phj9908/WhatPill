@@ -42,9 +42,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Worning"
-            android:exported="true" />
-        <activity
             android:name=".Name"
             android:exported="true" />
         <activity

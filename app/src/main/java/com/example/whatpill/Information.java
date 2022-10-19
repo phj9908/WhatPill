@@ -50,7 +50,7 @@ public class Information extends AppCompatActivity {
         btnExplain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Worning.class);
+                Intent intent = new Intent(getApplicationContext(), Explain.class);
                 startActivity(intent);
             }
         });
@@ -75,6 +75,14 @@ public class Information extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Food.class);
+                startActivity(intent);
+            }
+        });
+
+        btnGood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Good.class);
                 startActivity(intent);
             }
         });
