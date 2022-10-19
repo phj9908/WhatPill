@@ -8,10 +8,8 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,7 +20,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -32,7 +29,6 @@ import com.google.firebase.storage.UploadTask;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -89,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 clickUpload();
                 imageUri = null;
 
-                Intent intent2 = new Intent(this, Information.class);
+                Intent intent2 = new Intent(this, Name.class);
                 startActivity(intent2);
                 break;
         }
@@ -130,13 +126,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Firebase Storage를 관리하는 객체 얻어오기
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
 
-        // 업로드할 파일의 node를 참조하는 객체(파일명: 날짜+시간)
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
-        String filename = sdf.format(new Date()) + ".png";
         // 원래 확장자는 파일의 실제 확장자를 얻어와서 사용해야함. 그러려면 이미지의 절대 주소를 구해야함.
+        String filename = "pill.png";
 
+        // 폴더가 없으면 자동 생성
         StorageReference imgRef = firebaseStorage.getReference("uploads/" + filename);
-        // uploads라는 폴더가 없으면 자동 생성
+
 
         // 참조 객체를 통해 이미지 파일 업로드
         // imgRef.putFile(imgUri);
