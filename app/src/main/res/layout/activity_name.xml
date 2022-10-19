@@ -19,42 +19,65 @@
         android:layout_marginBottom="30dp"
         app:srcCompat="@drawable/image" />
 
-    <Button
-        android:id="@+id/name1"
+    <ScrollView
         android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:layout_marginBottom="10dp"
-        android:background="@color/dark_blue"
-        android:text="name1"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/name2"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:layout_marginBottom="10dp"
-        android:background="@color/dark_blue"
-        android:text="name2"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/name3"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
+        android:layout_height="170dp"
+        android:layout_weight="2"
         android:layout_marginBottom="30dp"
-        android:background="@color/dark_blue"
-        android:text="name3"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:layout_gravity="center">
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="170dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/name1"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:background="@color/dark_blue"
+                android:text="name1"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/name2"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:background="@color/dark_blue"
+                android:text="name2"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/name3"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:background="@color/dark_blue"
+                android:text="name3"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/name4"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
+                android:background="@color/dark_blue"
+                android:text="name4"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
