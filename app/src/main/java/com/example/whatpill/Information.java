@@ -1,32 +1,26 @@
 package com.example.whatpill;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 public class Information extends AppCompatActivity {
 
-    Button btnExplain, btnPerson, btnPill, btnFood, btnGood;
+    TextView tvExplain;
+    Button btnWarning, btnFood, btnGood;
     ImageView ivPill;
 
     @Override
@@ -34,9 +28,8 @@ public class Information extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
 
-        btnExplain = findViewById(R.id.btnExplain);
-        btnPerson = findViewById(R.id.btnPerson);
-        btnPill = findViewById(R.id.btnPill);
+        tvExplain = findViewById(R.id.btnExplain);
+        btnWarning = findViewById(R.id.btnWarning);
         btnFood = findViewById(R.id.btnFood);
         btnGood = findViewById(R.id.btnGood);
         ivPill = findViewById(R.id.ivPill);
@@ -48,31 +41,29 @@ public class Information extends AppCompatActivity {
         CollectionReference pills = db.collection("name");
 
 
-        btnExplain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Explain.class);
-                startActivity(intent);
-            }
-        });
+        db.collection(pillName)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        // 데이터를 가져오는 작업이 잘 동작했을 떄
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String a = document.getString("explain").replace(":", "\n");
+                                tvExplain.setText(a);
+                            }
+                        } else {
+                            tvExplain.setText("Error => " + task.getException());
+                        }
+                    }
+                });
 
-        btnPerson.setOnClickListener(new View.OnClickListener() {
+        btnWarning.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String input = pillName;
 
-                Intent intent = new Intent(getApplicationContext(), Person.class);
-                intent.putExtra("name", input);
-                startActivity(intent);
-            }
-        });
-
-        btnPill.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String input = pillName;
-
-                Intent intent = new Intent(getApplicationContext(), Pill.class);
+                Intent intent = new Intent(getApplicationContext(), Warning.class);
                 intent.putExtra("name", input);
                 startActivity(intent);
             }

@@ -18,19 +18,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".Pill"
-            android:exported="true" />
-        <activity
             android:name=".Good"
             android:exported="true" />
         <activity
             android:name=".Food"
             android:exported="true" />
         <activity
-            android:name=".Person"
-            android:exported="true" />
-        <activity
-            android:name=".Explain"
+            android:name=".Warning"
             android:exported="true" />
         <activity
             android:name=".Splash"
