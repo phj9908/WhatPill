@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -20,6 +21,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
+import android.widget.TableLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -36,6 +38,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     final static int TAKE_PICTURE = 1;
     private static final String TAG = "MyActivity";
+
+    TableLayout tabLayout;
+    LinearLayout linearCamera, linearHistory, linearTimer;
+    Context context;
 
     Button btnCamera, btnSave;
     ImageView ivPill;

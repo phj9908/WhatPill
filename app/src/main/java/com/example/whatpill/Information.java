@@ -28,6 +28,7 @@ public class Information extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
 
+
         tvExplain = findViewById(R.id.btnExplain);
         btnWarning = findViewById(R.id.btnWarning);
         btnFood = findViewById(R.id.btnFood);
