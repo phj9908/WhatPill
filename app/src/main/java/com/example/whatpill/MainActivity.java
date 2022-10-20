@@ -39,10 +39,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     final static int TAKE_PICTURE = 1;
     private static final String TAG = "MyActivity";
 
-    TableLayout tabLayout;
-    LinearLayout linearCamera, linearHistory, linearTimer;
-    Context context;
-
     Button btnCamera, btnSave;
     ImageView ivPill;
     Uri imageUri;
@@ -92,6 +88,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnSave:
                 clickUpload();
                 imageUri = null;
+
+                try{
+                    Thread.sleep(5000);
+                }catch(InterruptedException e){
+                    e.printStackTrace();
+                }
 
                 Intent intent2 = new Intent(this, Name.class);
                 startActivity(intent2);

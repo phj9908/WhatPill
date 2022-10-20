@@ -6,17 +6,23 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.checkerframework.checker.units.qual.A;
 
@@ -27,6 +33,7 @@ public class Name extends AppCompatActivity {
     String pill [] = {"class0", "class1", "class2", "class3"};
     Button[] nameBtn = new Button[5];
     Integer [] nameBtnID = {R.id.name1, R.id.name2, R.id.name3, R.id.name4, R.id.name5};
+    ImageView ivDetecting;
 
     int i;
 
@@ -34,6 +41,8 @@ public class Name extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name);
+
+        ivDetecting = findViewById(R.id.ivDetecting);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference pills = db.collection("jeong88");
@@ -70,6 +79,16 @@ public class Name extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), Information.class);
                     intent.putExtra("name", input);
                     startActivity(intent);
+                }
+            });
+
+            FirebaseStorage storage = FirebaseStorage.getInstance("gs://what-pill.appspot.com");
+            StorageReference storageReference = storage.getReference();
+            StorageReference pathReference = storageReference.child("downloads/img.png");
+            pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    Glide.with(getApplicationContext()).load(uri).into(ivDetecting);
                 }
             });
         }
