@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class Name extends AppCompatActivity {
 
-    String pill [] = new String[3];
+    String pill [] = {"class0", "class1", "class2", "class3"};
     Button[] nameBtn = new Button[5];
     Integer [] nameBtnID = {R.id.name1, R.id.name2, R.id.name3, R.id.name4, R.id.name5};
 
@@ -36,17 +36,32 @@ public class Name extends AppCompatActivity {
         setContentView(R.layout.activity_name);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference pills = db.collection("jeong99").document("pills").collection("bearse");
+        CollectionReference pills = db.collection("jeong88");
 
-        for (i=0; i<pill.length; i++) {
+        for (i = 0; i < pill.length; i++) {
             nameBtn[i] = findViewById(nameBtnID[i]);
         }
 
-        for (i=0; i<pill.length; i++){
+        for (i = 0; i < pill.length; i++) {
             final int index;
             index = i;
 
             nameBtn[index].setVisibility(View.VISIBLE);
+
+            pills.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            String a = document.getString(pill[index]);
+                            nameBtn[index].setText(a);
+                        }
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                    }
+
+                }
+            });
 
             nameBtn[index].setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -56,45 +71,5 @@ public class Name extends AppCompatActivity {
                 }
             });
         }
-
-
-
-        /*pills.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        name1.setText(document.getId());
-                    }
-                } else{
-                    Log.d(TAG, "Error getting documents: ", task.getException());
-                }
-
-            }
-        });
-
-        name1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Information.class);
-                startActivity(intent);
-            }
-        });
-
-        name2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Information.class);
-                startActivity(intent);
-            }
-        });
-
-        name3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Information.class);
-                startActivity(intent);
-            }
-        });*/
     }
 }
