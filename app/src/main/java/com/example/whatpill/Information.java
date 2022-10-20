@@ -41,7 +41,6 @@ public class Information extends AppCompatActivity {
         btnGood = findViewById(R.id.btnGood);
         ivPill = findViewById(R.id.ivPill);
 
-
         Intent intent = getIntent();
         String pillName = intent.getStringExtra("name");
 

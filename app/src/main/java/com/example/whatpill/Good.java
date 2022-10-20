@@ -49,7 +49,5 @@ public class Good extends AppCompatActivity {
                         }
                     }
                 });
-
-
     }
 }

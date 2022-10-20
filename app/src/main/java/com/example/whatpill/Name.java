@@ -30,7 +30,6 @@ public class Name extends AppCompatActivity {
 
     int i;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +59,6 @@ public class Name extends AppCompatActivity {
                     } else {
                         Log.d(TAG, "Error getting documents: ", task.getException());
                     }
-
                 }
             });
 
