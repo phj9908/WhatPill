@@ -29,8 +29,6 @@ public class Information extends AppCompatActivity {
     Button btnExplain, btnPerson, btnPill, btnFood, btnGood;
     ImageView ivPill;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +41,12 @@ public class Information extends AppCompatActivity {
         btnGood = findViewById(R.id.btnGood);
         ivPill = findViewById(R.id.ivPill);
 
+
+        Intent intent = getIntent();
+        String pillName = intent.getStringExtra("name");
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference pills = db.collection("jeong99").document("pills").collection("bearse");
+        CollectionReference pills = db.collection("name");
 
 
         btnExplain.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +60,10 @@ public class Information extends AppCompatActivity {
         btnPerson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String input = pillName;
+
                 Intent intent = new Intent(getApplicationContext(), Person.class);
+                intent.putExtra("name", input);
                 startActivity(intent);
             }
         });
@@ -66,7 +71,10 @@ public class Information extends AppCompatActivity {
         btnPill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String input = pillName;
+
                 Intent intent = new Intent(getApplicationContext(), Pill.class);
+                intent.putExtra("name", input);
                 startActivity(intent);
             }
         });
@@ -74,7 +82,10 @@ public class Information extends AppCompatActivity {
         btnFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String input = pillName;
+
                 Intent intent = new Intent(getApplicationContext(), Food.class);
+                intent.putExtra("name", input);
                 startActivity(intent);
             }
         });
@@ -82,7 +93,10 @@ public class Information extends AppCompatActivity {
         btnGood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String input = pillName;
+
                 Intent intent = new Intent(getApplicationContext(), Good.class);
+                intent.putExtra("name", input);
                 startActivity(intent);
             }
         });

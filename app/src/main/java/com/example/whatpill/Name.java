@@ -30,6 +30,7 @@ public class Name extends AppCompatActivity {
 
     int i;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +67,10 @@ public class Name extends AppCompatActivity {
             nameBtn[index].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    String input = nameBtn[index].getText().toString();
+
                     Intent intent = new Intent(getApplicationContext(), Information.class);
+                    intent.putExtra("name", input);
                     startActivity(intent);
                 }
             });

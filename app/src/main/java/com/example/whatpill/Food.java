@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -18,96 +19,35 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class Food extends AppCompatActivity {
 
-    TextView textview;
-    String a, b, c, cls, id;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
 
-        textview = findViewById(R.id.textView);
+        textView = findViewById(R.id.textView);
+
+        Intent intent = getIntent();
+        String pillName = intent.getStringExtra("name");
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        //BEARSE라고 나오는 거
-        CollectionReference bea = db.collection("bearse");
-        bea.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        a = document.getId();
+        db.collection(pillName)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        // 데이터를 가져오는 작업이 잘 동작했을 떄
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String a = document.getString("food");
+                                textView.setText(a);
+                            }
+                        } else {
+                            textView.setText("Error => " + task.getException());
+                        }
                     }
-                }
-
-            }
-        });
-        //TACENOL이라고 나오는 거
-        CollectionReference tac = db.collection("tacenol");
-        tac.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        b = document.getId();
-                    }
-                }
-
-            }
-        });
-        //IBUROEN이라고 나오는 거
-        CollectionReference ibu = db.collection("iburoen");
-        ibu.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        c = document.getId();
-                    }
-                }
-
-            }
-        });
-        // 파이썬에서 가져온 컬렉션
-        CollectionReference python = db.collection("jeong88");
-        python.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        cls = document.getString("class");
-                    }
-                }
-
-            }
-        });
-
-        // 자바 클래스로 바꾸는 짓거리
-        if(cls == a) {
-            id = "bearse";
-        } else if(cls == b) {
-            id = "tacenol";
-        } else if(cls == c) {
-            id = "iburoen";
-        }
-
-
-        CollectionReference pills = db.collection("jeong99").document("pills").collection(id);
-
-        pills.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        String nofood = document.getString("nofood");
-                        textview.setText(nofood);
-                    }
-                } else{
-                    Log.d(TAG, "Error getting documents: ", task.getException());
-                }
-
-            }
-        });
+                });
     }
 }
