@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 public class Name extends AppCompatActivity {
 
-    String pill [] = {"class0", "class1", "class2", "class3"};
+    String pill [] = {};
     Button[] nameBtn = new Button[5];
     Integer [] nameBtnID = {R.id.name1, R.id.name2, R.id.name3, R.id.name4, R.id.name5};
     ImageView ivDetecting;
@@ -45,7 +45,18 @@ public class Name extends AppCompatActivity {
         ivDetecting = findViewById(R.id.ivDetecting);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference pills = db.collection("jeong88");
+        CollectionReference pills = db.collection("pill");
+
+        pills.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    for (QueryDocumentSnapshot document : task.getResult()){
+                        pills.add(document.getId());
+                    }
+                }
+            }
+        });
 
         for (i = 0; i < pill.length; i++) {
             nameBtn[i] = findViewById(nameBtnID[i]);
