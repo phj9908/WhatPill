@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/btnHome"
+        android:enabled="true"
+        app:showAsAction="always"
+        android:title="홈"/>
+
+    <item
+        android:id="@+id/btnCamera"
+        android:enabled="true"
+        app:showAsAction="always"
+        android:title="카메라"/>
+
+    <item
+        android:id="@+id/btnHistory"
+        android:enabled="true"
+        app:showAsAction="always"
+        android:title="기록"/>
+
+    <item
+        android:id="@+id/btnTimer"
+        android:enabled="true"
+        app:showAsAction="always"
+        android:title="타이머"/>
+</menu>
