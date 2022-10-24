@@ -1,4 +1,4 @@
-package com.example.whatpill;
+package com.example.whatpill.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -19,11 +18,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TabHost;
-import android.widget.TableLayout;
 import android.widget.Toast;
 
+import com.example.whatpill.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -161,4 +158,3 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 });
     }
 }
-

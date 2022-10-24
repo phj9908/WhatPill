@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.whatpill.MainActivity;
+import com.example.whatpill.activity.MainActivity;
 import com.example.whatpill.R;
 
 public class Camera extends Fragment {

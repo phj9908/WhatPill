@@ -1,4 +1,4 @@
-package com.example.whatpill;
+package com.example.whatpill.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.whatpill.R;
 import com.example.whatpill.fragment.Camera;
 import com.example.whatpill.fragment.History;
 import com.example.whatpill.fragment.Home;

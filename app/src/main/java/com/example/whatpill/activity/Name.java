@@ -1,4 +1,4 @@
-package com.example.whatpill;
+package com.example.whatpill.activity;
 
 import static android.content.ContentValues.TAG;
 
@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.whatpill.R;
+import com.example.whatpill.information.Information;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -23,10 +25,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
-import org.checkerframework.checker.units.qual.A;
-
-import java.util.ArrayList;
 
 public class Name extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.whatpill;
+package com.example.whatpill.information;
 
 import static android.content.ContentValues.TAG;
 
@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.example.whatpill.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;

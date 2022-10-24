@@ -1,4 +1,4 @@
-package com.example.whatpill;
+package com.example.whatpill.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.whatpill.R;
 
 public class Login extends AppCompatActivity {
 
