@@ -31,13 +31,12 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/tvPill"
+            android:id="@+id/ivPill"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
-            android:layout_weight="2"
-            app:srcCompat="@drawable/pill" />
+            android:layout_weight="2" />
 
         <Button
             android:id="@+id/btnWarning"
