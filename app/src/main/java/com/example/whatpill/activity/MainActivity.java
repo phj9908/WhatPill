@@ -115,18 +115,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public String getRealPathFromURI(Uri contentUri) {
-        String[] proj = {MediaStore.Images.Media.DATA};
-
-        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
-        cursor.moveToNext();
-        String path = cursor.getString(cursor.getColumnIndex(MediaStore.MediaColumns.DATA));
-        Uri uri = Uri.fromFile(new File(path));
-
-        cursor.close();
-        return path;
-    }
-
     // 파이어베이스 업로드 함수
     public void clickUpload() {
 
@@ -147,7 +135,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(MainActivity.this, "success upload", Toast.LENGTH_SHORT).show();
             }
         })
                 .addOnFailureListener(new OnFailureListener() {

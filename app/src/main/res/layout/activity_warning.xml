@@ -7,59 +7,59 @@
     tools:context=".information.Warning"
     android:orientation="vertical"
     android:background="@color/yellow">
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="20dp"
-        android:orientation="vertical">
+        android:layout_margin="20dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="65dp"
+                android:background="@color/white"
+                android:fontFamily="@font/jalnan"
+                android:text="주의 대상"
+                android:textAlignment="center"
+                android:textColor="#F86D6D"
+                android:textSize="28dp" />
+            <TextView
+                android:id="@+id/tvPerson"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/jalnan"
+                android:textSize="19dp"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:lineSpacingExtra="12dp"
+                android:layout_marginTop="40dp"
+                android:text="TextView" />
 
-        <TextView
-            android:layout_width="145dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="65dp"
-            android:background="@color/white"
-            android:fontFamily="@font/jalnan"
-            android:text="주의 대상"
-            android:textAlignment="center"
-            android:textColor="#F86D6D"
-            android:textSize="28dp" />
-        <TextView
-            android:id="@+id/tvPerson"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/jalnan"
-            android:textSize="19dp"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            android:lineSpacingExtra="12dp"
-            android:layout_marginTop="40dp"
-            android:text="TextView" />
-
-        <TextView
-            android:layout_width="244dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="70dp"
-            android:background="@color/white"
-            android:fontFamily="@font/jalnan"
-            android:text="먹으면 안되는 약"
-            android:textAlignment="center"
-            android:textColor="#F86D6D"
-            android:textSize="28dp" />
-        <TextView
-            android:id="@+id/tvPill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/jalnan"
-            android:textSize="19dp"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            android:lineSpacingExtra="12dp"
-            android:layout_marginTop="40dp"
-            android:text="TextView" />
-
-
-    </LinearLayout>
-
+            <TextView
+                android:layout_width="244dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="70dp"
+                android:background="@color/white"
+                android:fontFamily="@font/jalnan"
+                android:text="먹으면 안되는 약"
+                android:textAlignment="center"
+                android:textColor="#F86D6D"
+                android:textSize="28dp" />
+            <TextView
+                android:id="@+id/tvPill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/jalnan"
+                android:textSize="19dp"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:lineSpacingExtra="12dp"
+                android:layout_marginTop="40dp"
+                android:text="TextView" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
