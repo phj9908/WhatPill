@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 imageUri = null;
 
                 try{
-                    Thread.sleep(1000);
+                    Thread.sleep(2000);
                 }catch(InterruptedException e){
                     e.printStackTrace();
                 }
