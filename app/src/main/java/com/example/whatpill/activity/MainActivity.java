@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.whatpill.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -105,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         break;
                     }
                 }
+
             case R.id.btnSave:
                 clickUpload();
                 imageUri = null;
@@ -131,10 +133,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 File file = new File(mCurrentPhotoPath);
                 boolean bExist = file.exists();
+
                 if (bExist) {
                     Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath);
                     ivPill.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-                    ivPill.setImageBitmap(bitmap);
+                    Glide.with(this).load(bitmap).into(ivPill);
 
                     String imageSaveUri = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap , "사진 저장", "사진이 저장되었습니다.");
                     imageUri = Uri.parse(imageSaveUri);
@@ -155,7 +158,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // 폴더가 없으면 자동 생성
         StorageReference imgRef = firebaseStorage.getReference("uploads/" + filename);
-
 
         // 참조 객체를 통해 이미지 파일 업로드
         // imgRef.putFile(imgUri);
