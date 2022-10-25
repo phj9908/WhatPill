@@ -45,7 +45,7 @@
                 android:layout_marginTop="70dp"
                 android:background="@color/white"
                 android:fontFamily="@font/jalnan"
-                android:text="먹으면 안되는 약"
+                android:text="같이 복용하면\n안 되는 약"
                 android:textAlignment="center"
                 android:textColor="#F86D6D"
                 android:textSize="28dp" />
