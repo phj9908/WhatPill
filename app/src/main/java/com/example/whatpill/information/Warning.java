@@ -38,7 +38,7 @@ public class Warning extends AppCompatActivity {
                         // 데이터를 가져오는 작업이 잘 동작했을 떄
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                String a = document.getString("person");
+                                String a = document.getString("person").replace(", ", "\n");
                                 tvPerson.setText(a);
                             }
                         } else {
@@ -55,7 +55,7 @@ public class Warning extends AppCompatActivity {
                         // 데이터를 가져오는 작업이 잘 동작했을 떄
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                String a = document.getString("pill");
+                                String a = document.getString("pill").replace(", ", "\n");
                                 tvPill.setText(a);
                             }
                         } else {
