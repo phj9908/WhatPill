@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,6 +30,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btnCamera, btnSave;
     ImageView ivPill;
     Uri imageUri;
+    String mCurrentPhotoPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,12 +80,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent1;
 
         switch (v.getId()) {
-            // 촬영
             case R.id.btnCamera:
                 intent1 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent1, TAKE_PICTURE);
-                break;
-            // 저장
+
+                if(intent1.resolveActivity(getPackageManager())!=null){
+                    File photoFile = null;
+                    File tempDir = getCacheDir();
+
+                    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+                    String imageFileName = "Capture_" + timeStamp + "_";
+
+                    try {
+                        File tempImage = File.createTempFile(imageFileName, ".jpg", tempDir);
+                        mCurrentPhotoPath = tempImage.getAbsolutePath();
+                        photoFile = tempImage;
+                    } catch (IOException e){
+                        e.printStackTrace();
+                    }
+
+                    if(photoFile!=null){
+                        Uri photoURI = FileProvider.getUriForFile(MainActivity.this, getPackageName() + ".fileprovider", photoFile);
+                        intent1.putExtra(MediaStore.EXTRA_OUTPUT,photoURI);
+                        startActivityForResult(intent1, 1);
+                        break;
+                    }
+                }
             case R.id.btnSave:
                 clickUpload();
                 imageUri = null;
@@ -99,18 +122,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode,@Nullable @org.jetbrains.annotations.Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         // 사진 촬영 완료 후 응답
         if (requestCode == TAKE_PICTURE) {
-            if (resultCode == RESULT_OK && data.hasExtra("data")) {
-                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-                if (bitmap != null) ivPill.setImageBitmap(bitmap);
+            if (resultCode == RESULT_OK) {
+//                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+//                if (bitmap != null) ivPill.setImageBitmap(bitmap);
 
-                String imageSaveUri = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "사진 저장", "사진이 저장되었습니다.");
-                imageUri = Uri.parse(imageSaveUri);
-                Log.d(TAG, "MainActivity - onActivityResult() called" + imageUri);
+                File file = new File(mCurrentPhotoPath);
+                boolean bExist = file.exists();
+                if (bExist) {
+                    Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath);
+                    ivPill.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+                    ivPill.setImageBitmap(bitmap);
+
+                    String imageSaveUri = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap , "사진 저장", "사진이 저장되었습니다.");
+                    imageUri = Uri.parse(imageSaveUri);
+                    Log.d(TAG, "MainActivity - onActivityResult() called" + imageUri);
+                }
             }
         }
     }
