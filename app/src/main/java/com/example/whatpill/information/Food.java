@@ -6,33 +6,40 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.whatpill.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class Food extends AppCompatActivity {
 
-    TextView textView;
+    ImageView ivFood;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
 
-        textView = findViewById(R.id.textView);
+        ivFood = findViewById(R.id.ivFood);
 
         Intent intent = getIntent();
         String pillName = intent.getStringExtra("name");
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference pills = db.collection("name");
 
         db.collection(pillName)
                 .get()
@@ -43,10 +50,17 @@ public class Food extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String a = document.getString("food");
-                                textView.setText(a);
+
+                                FirebaseStorage storage = FirebaseStorage.getInstance("gs://what-pill.appspot.com");
+                                StorageReference storageReference = storage.getReference();
+                                StorageReference pathReference = storageReference.child(a);
+                                pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        Glide.with(getApplicationContext()).load(uri).into(ivFood);
+                                    }
+                                });
                             }
-                        } else {
-                            textView.setText("Error => " + task.getException());
                         }
                     }
                 });
