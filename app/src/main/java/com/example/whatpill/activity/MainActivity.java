@@ -128,8 +128,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // 사진 촬영 완료 후 응답
         if (requestCode == TAKE_PICTURE) {
             if (resultCode == RESULT_OK) {
-//                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-//                if (bitmap != null) ivPill.setImageBitmap(bitmap);
 
                 File file = new File(mCurrentPhotoPath);
                 boolean bExist = file.exists();
