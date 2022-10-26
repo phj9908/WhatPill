@@ -16,12 +16,24 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/btnExplain"
+            android:id="@+id/tvName"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="20dp"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:background="@color/dark_blue"
+            android:gravity="center"
+            android:text="설명"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/tvExplain"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
             android:layout_marginBottom="10dp"
             android:background="@color/dark_blue"
             android:gravity="center"
@@ -50,30 +62,35 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btnFood"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:backgroundTint="@color/white"
-            android:text="먹으면 안 되는 음식"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnGood"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:backgroundTint="@color/white"
-            android:text="추천 음식"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            <Button
+                android:id="@+id/btnGood"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:backgroundTint="@color/white"
+                android:text="추천 음식"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
+            <Button
+                android:id="@+id/btnFood"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:backgroundTint="@color/white"
+                android:text="비추천 음식"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>

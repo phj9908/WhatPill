@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:text="WHAT PILL"
+        android:text="WHAT pill"
         android:textSize="30sp"
         android:textColor="@color/dark_blue"
         android:textStyle="bold" />
@@ -39,12 +39,10 @@
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
+        android:layout_width="255dp"
+        android:layout_height="50dp"
         android:backgroundTint="@color/dark_blue"
         android:layout_gravity="center"
         android:text="로그인"
         android:textStyle="bold" />
-
-
 </LinearLayout>

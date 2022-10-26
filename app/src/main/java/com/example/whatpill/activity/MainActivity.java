@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (bExist) {
                     Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath);
                     ivPill.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-                    Glide.with(this).load(bitmap).into(ivPill);
+                    Glide.with(getApplicationContext()).load(bitmap).into(ivPill);
 
                     String imageSaveUri = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap , "사진 저장", "사진이 저장되었습니다.");
                     imageUri = Uri.parse(imageSaveUri);

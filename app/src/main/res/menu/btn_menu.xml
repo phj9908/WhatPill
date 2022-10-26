@@ -4,9 +4,9 @@
     <item
         android:id="@+id/btnHome"
         android:enabled="true"
-        android:icon="@drawable/home"
+        android:icon="@drawable/magnifier"
         app:showAsAction="always"
-        android:title="홈"/>
+        android:title="검색"/>
 
     <item
         android:id="@+id/btnCamera"
@@ -27,5 +27,5 @@
         android:enabled="true"
         android:icon="@drawable/icon_timer"
         app:showAsAction="always"
-        android:title="타이머"/>
+        android:title="알람"/>
 </menu>

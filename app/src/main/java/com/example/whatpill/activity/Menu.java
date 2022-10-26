@@ -9,13 +9,13 @@ import android.view.MenuItem;
 import com.example.whatpill.R;
 import com.example.whatpill.fragment.Camera;
 import com.example.whatpill.fragment.History;
-import com.example.whatpill.fragment.Home;
+import com.example.whatpill.fragment.Search;
 import com.example.whatpill.fragment.Timer;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class Menu extends AppCompatActivity {
 
-    Home homeView;
+    Search homeView;
     History historyView;
     Camera cameraView;
     Timer timerView;
@@ -24,7 +24,7 @@ public class Menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.btns);
-        homeView = new Home();
+        homeView = new Search();
         cameraView = new Camera();
         historyView = new History();
         timerView = new Timer();
