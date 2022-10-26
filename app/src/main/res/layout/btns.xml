@@ -20,6 +20,8 @@
         android:layout_gravity="bottom"
         app:itemBackground="@color/yellow"
         app:labelVisibilityMode="labeled"
-        app:menu="@menu/btn_menu">
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:menu="@menu/btn_menu"
+        app:itemIconTint="@color/brown"
+        app:itemIconSize="25dp"
+        app:itemTextColor="@color/brown" />
 </LinearLayout>
