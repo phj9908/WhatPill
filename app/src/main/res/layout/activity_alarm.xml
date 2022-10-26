@@ -7,7 +7,7 @@
     tools:context=".alarm.Alarm"
     android:orientation="vertical"
     android:layout_weight="7"
-    android:background="@color/yellow">
+    android:background="@color/light_yellow">
 
     <TextView
         android:id="@+id/textView"
@@ -19,7 +19,7 @@
         android:layout_marginBottom="80dp"
         android:fontFamily="@font/jalnan"
         android:lineSpacingExtra="13dp"
-        android:text="진행중인 알람이\n없습니다."
+        android:text="알람이 꺼진\n상태입니다."
         android:textAlignment="center"
         android:textSize="35sp" />
 
