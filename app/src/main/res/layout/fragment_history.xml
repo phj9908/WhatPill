@@ -13,7 +13,8 @@
         android:textSize="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="기록" />
+        android:text="검색 기록 🔍"
+        android:textStyle="bold"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"

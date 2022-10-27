@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Projects/WhatPill_ver8.5/app/src/main/res/layout/activity_information.xml" value="0.36770833333333336" />
+        <entry key="..\:/Android Projects/WhatPill_ver8.5/app/src/main/res/layout/activity_name.xml" value="0.36770833333333336" />
+        <entry key="..\:/Android Projects/WhatPill_ver8.5/app/src/main/res/layout/fragment_history.xml" value="0.36770833333333336" />
+        <entry key="..\:/Android Projects/WhatPill_ver8.5/app/src/main/res/layout/recycler.xml" value="0.36770833333333336" />
         <entry key="..\:/ProjectDirectory/what_pill_ver8.5/app/src/main/res/font/font.xml" value="0.39537037037037037" />
         <entry key="..\:/ProjectDirectory/what_pill_ver8.5/app/src/main/res/layout/activity_warning.xml" value="0.4822916666666667" />
         <entry key="..\:/Users/yujin/AndroidStudioProjects/What_pill_ver7/app/src/main/res/layout/activity_food.xml" value="0.4092827004219409" />
