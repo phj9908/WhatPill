@@ -1,5 +1,7 @@
 package com.example.whatpill.information;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,6 +23,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -39,6 +42,7 @@ public class Information extends AppCompatActivity {
     TextView tvExplain, tvName;
     Button btnWarning, btnFood, btnGood, btnHistory;
     ImageView ivPill;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +62,12 @@ public class Information extends AppCompatActivity {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference pills = db.collection("name");
+
+        // 사용자 uid얻어오기
+//        firebaseAuth =  FirebaseAuth.getInstance();
+//        FirebaseUser user = firebaseAuth.getCurrentUser();
+//        String uid = user.getUid();
+        String uid = "tvorTgHCHeSxbNmKMx8tXmJSU0S2";
 
         db.collection(pillName)
                 .get()
@@ -134,12 +144,12 @@ public class Information extends AppCompatActivity {
                 user.put("name", pillName);
                 user.put("date", new Timestamp(new Date()));
 
-                db.collection("user")
-                        .add(user)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                db.collection("user").document(uid).collection("history").document(getTime()).set(user)
+                        .addOnSuccessListener(new OnSuccessListener<Void>()  {
                             @Override
-                            public void onSuccess(DocumentReference documentReference) {
+                            public void onSuccess(Void unused) {
                                 Toast.makeText(getApplicationContext(),"저장 완료", Toast.LENGTH_SHORT).show();
+                                Log.d(TAG,"저장완료 : "+pillName);
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {

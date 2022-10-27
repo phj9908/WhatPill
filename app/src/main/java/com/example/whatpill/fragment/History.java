@@ -67,27 +67,24 @@ public class History extends Fragment {
         super.onCreate(savedInstanceState);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference dbPath = db.collection("user").document(uid).collection("Date");
+        CollectionReference dbPath = db.collection("user").document(uid).collection("history");
 
-        for(i =0;i< getPill.length;i++){
-            final int index;
-            index = i;
 
-            dbPath.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            Log.d(TAG, document.getId() + " => " + document.getData());
-                        }
-                    } else {
-                        Log.d(TAG, "Error getting documents: ", task.getException());
+        dbPath.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        userHistories.add(new UserHistory(document.getString("name"),document.getId()));
+                        Log.d(TAG, document.getId() + " => " + document.getData());
                     }
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.getException());
                 }
-            });
-        }
+            }
+        });
 
-        userHistories.add(new UserHistory("베아로제","소화불량"));
+        //userHistories.add(new UserHistory("베아로제","소화불량"));
 
 
     }
