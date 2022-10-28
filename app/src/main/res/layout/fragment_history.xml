@@ -22,13 +22,13 @@
         android:layout_height="wrap_content"
         android:scrollbars="vertical" />
 
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"
-        android:textSize="20dp"
-        android:text="검색기록이 없습니다."
-        android:fontFamily="@font/jalnan"/>
+<!--    <TextView-->
+<!--        android:id="@+id/tv"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:textSize="20dp"-->
+<!--        android:text="검색기록이 없습니다."-->
+<!--        android:fontFamily="@font/jalnan"/>-->
 </LinearLayout>

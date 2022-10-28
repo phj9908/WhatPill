@@ -66,7 +66,6 @@ public class History extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         Map<String, Object> name = new HashMap<>();
         name.put("bearse","베아제");
         name.put("cenoba","세노바");
