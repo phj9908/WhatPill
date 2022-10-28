@@ -41,9 +41,6 @@ public class History extends Fragment {
     private HistoryAdapter historyAdapter;
     private FirebaseAuth firebaseAuth;
 
-    String field[] = {"pill", "time"};
-    String getPill[] = new String[3];
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -72,7 +69,7 @@ public class History extends Fragment {
         name.put("bearse","베아제");
         name.put("cenoba","세노바");
         name.put("bearrose","베아로제");
-        name.put("jungrohwan","정로환");
+        name.put("jeongrohwan","정로환");
         name.put("pajaim","파자임");
 
 
@@ -91,7 +88,7 @@ public class History extends Fragment {
                 if (task.isSuccessful()) {
                     userHistories.clear();
                     for (QueryDocumentSnapshot document : task.getResult()) {
-                        String docGetPill = document.getString("explain");
+
                         userHistories.add(new UserHistory((String) name.get(document.getString("name")),document.getString("explain"),document.getId()));
 
                         Log.d(TAG, document.getId() + " => " + document.getData());
@@ -103,5 +100,4 @@ public class History extends Fragment {
         });
 
     }
-
 }

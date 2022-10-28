@@ -35,7 +35,7 @@ import java.util.Map;
 
 public class Name extends AppCompatActivity {
 
-    String pill [] = {"class0", "class1", "class2"};
+    String pill [] = {"class0", "class1", "class2","class3","class4"};
     Button[] nameBtn = new Button[5];
 //    Button btnHome;
     Integer [] nameBtnID = {R.id.name1, R.id.name2, R.id.name3, R.id.name4, R.id.name5};
@@ -97,12 +97,12 @@ public class Name extends AppCompatActivity {
 
                     Intent intent = new Intent(getApplicationContext(), Information.class);
                     intent.putExtra("name", input);
-//
-//                    try{
-//                        Thread.sleep(1000);
-//                    }catch(InterruptedException e){
-//                        e.printStackTrace();
-//                    }
+
+                    try{
+                        Thread.sleep(1000);
+                    }catch(InterruptedException e){
+                        e.printStackTrace();
+                    }
 
                     startActivity(intent);
                 }

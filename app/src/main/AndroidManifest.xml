@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <uses-feature android:name="android.hardware.camera2" />
@@ -19,6 +18,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".activity.Menu2"
+            android:exported="true" />
 
         <meta-data
             android:name="com.google.android.actions"
@@ -67,12 +69,15 @@
         <activity
             android:name=".Sub_search"
             android:exported="true" />
-        <activity android:name=".alarm.Alarm" android:exported="false">
+        <activity
+            android:name=".alarm.Alarm"
+            android:exported="false">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".alarm.AlertReceiver"/>
+
+        <receiver android:name=".alarm.AlertReceiver" />
     </application>
 
 </manifest>
