@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -65,6 +66,7 @@ public class History extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         Map<String, Object> name = new HashMap<>();
         name.put("bearse","베아제");
         name.put("cenoba","세노바");
@@ -93,10 +95,26 @@ public class History extends Fragment {
 
                         Log.d(TAG, document.getId() + " => " + document.getData());
                     }
+                    //reflesh();
                 } else {
                     Log.d(TAG, "Error getting documents: ", task.getException());
                 }
             }
+
+//            private void reflesh() {
+//                try {
+//                    //TODO 액티비티 화면 재갱신 시키는 코드
+//                    Intent intent = getActivity().getIntent();
+//                    intent.finish(); //현재 액티비티 종료 실시
+//                    overridePendingTransition(0, 0); //인텐트 애니메이션 없애기
+//                    startActivity(intent); //현재 액티비티 재실행 실시
+//                    overridePendingTransition(0, 0); //인텐트 애니메이션 없애기
+//                }
+//                catch (Exception e){
+//                    e.printStackTrace();
+//                }
+//
+//            }
         });
 
     }
