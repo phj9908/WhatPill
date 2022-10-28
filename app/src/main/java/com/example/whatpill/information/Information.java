@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -59,15 +60,15 @@ public class Information extends AppCompatActivity {
 
         Intent intent = getIntent();
         String pillName = intent.getStringExtra("name");
+        final String[] pillExplain = new String[1];
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference pills = db.collection("name");
 
-        // 사용자 uid얻어오기
-//        firebaseAuth =  FirebaseAuth.getInstance();
-//        FirebaseUser user = firebaseAuth.getCurrentUser();
-//        String uid = user.getUid();
-        String uid = "tvorTgHCHeSxbNmKMx8tXmJSU0S2";
+        //사용자 uid얻어오기
+        firebaseAuth =  FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        String uid = user.getUid();
+//        String uid = "tvorTgHCHeSxbNmKMx8tXmJSU0S2";
 
         db.collection(pillName)
                 .get()
@@ -96,6 +97,7 @@ public class Information extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 String a = document.getString("explain");
                                 tvExplain.setText(a);
+                                pillExplain[0] = a;
                             }
                         } else {
                             tvExplain.setText("Error => " + task.getException());
@@ -142,7 +144,7 @@ public class Information extends AppCompatActivity {
                 Map<String, Object> user = new HashMap<>();
 
                 user.put("name", pillName);
-                user.put("date", new Timestamp(new Date()));
+                user.put("explain", pillExplain[0]);
 
                 db.collection("user").document(uid).collection("history").document(getTime()).set(user)
                         .addOnSuccessListener(new OnSuccessListener<Void>()  {

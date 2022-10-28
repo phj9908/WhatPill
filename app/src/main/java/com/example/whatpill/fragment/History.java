@@ -21,6 +21,7 @@ import com.example.whatpill.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -77,11 +78,11 @@ public class History extends Fragment {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        // 사용자 uid얻어오기
-//        firebaseAuth =  FirebaseAuth.getInstance();
-//        FirebaseUser user = firebaseAuth.getCurrentUser();
-//        String uid = user.getUid();
-        String uid = "tvorTgHCHeSxbNmKMx8tXmJSU0S2";
+        //사용자 uid얻어오기
+        firebaseAuth =  FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        String uid = user.getUid();
+//        String uid = "tvorTgHCHeSxbNmKMx8tXmJSU0S2";
 
         CollectionReference dbPath = db.collection("user").document(uid).collection("history");
         dbPath.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -90,7 +91,9 @@ public class History extends Fragment {
                 if (task.isSuccessful()) {
                     userHistories.clear();
                     for (QueryDocumentSnapshot document : task.getResult()) {
-                        userHistories.add(new UserHistory((String) name.get(document.getString("name")),document.getId()));
+                        String docGetPill = document.getString("explain");
+                        userHistories.add(new UserHistory((String) name.get(document.getString("name")),document.getString("explain"),document.getId()));
+
                         Log.d(TAG, document.getId() + " => " + document.getData());
                     }
                 } else {

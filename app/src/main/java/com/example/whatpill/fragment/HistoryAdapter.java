@@ -21,13 +21,14 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        public TextView pillName,illnessName;
+        public TextView pillName,illnessName,date;
         public ImageView delIv;
 
         public MyViewHolder(@NonNull View view) {
             super(view);
             pillName = view.findViewById(R.id.pilltv);
             illnessName = view.findViewById(R.id.illtv);
+            date = view.findViewById(R.id.datetv);
             delIv = view.findViewById(R.id.delIv);
 
             // 리사이클뷰 객체 삭제
@@ -65,16 +66,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
 
         holder.pillName.setText(historyArrayList.get(position).getPillName());
         holder.illnessName.setText(historyArrayList.get(position).getIllnessName());
+        holder.date.setText("   "+historyArrayList.get(position).getDate());
 
-//        holder.pillName.setOnClickListener(new View.OnClickListener(){
-//
-//            @Override
-//            public void onClick(View view) {
-//                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-//
-//                //activity.getSupportFragmentManager().beginTransaction().replace(R.id.)
-//            }
-//        });
     }
 
 

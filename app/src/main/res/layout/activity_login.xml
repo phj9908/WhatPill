@@ -36,6 +36,7 @@
         android:layout_marginBottom="20dp"
         android:layout_gravity="center"
         android:background="@drawable/edit"
+        android:inputType="textPassword"
         android:hint=" 비밀번호 입력" />
 
     <Button
